@@ -42,91 +42,150 @@
             is-clearable
             initial-value="ciao"
         ></kup-text-field>
+        <kup-text-fielda
+            id="int1"
+            is-clearable
+            initial-value="ciao"
+        ></kup-text-fielda>
         <h4>Input text type password</h4>
         <kup-text-field
             input-type="password"
             initial-value="pippo"
             is-clearable
         ></kup-text-field>
+        <kup-text-fielda
+            input-type="password"
+            initial-value="pippo"
+            is-clearable
+        ></kup-text-fielda>
         <h4>Material Text Field (widget)</h4>
         <kup-text-field
             icon="favorite"
             outlined
             label="I am a label"
         ></kup-text-field>
+        <kup-text-fielda
+            icon="favorite"
+            outlined
+            label="I am a label"
+        ></kup-text-fielda>
         <kup-text-field></kup-text-field>
+        <kup-text-fielda></kup-text-fielda>
         <kup-text-field label="I am a label"></kup-text-field>
+        <kup-text-fielda label="I am a label"></kup-text-fielda>
         <kup-text-field outlined label="I am a label"></kup-text-field>
+        <kup-text-fielda outlined label="I am a label"></kup-text-fielda>
         <kup-text-field disabled label="I am a label"></kup-text-field>
+        <kup-text-fielda disabled label="I am a label"></kup-text-fielda>
         <kup-text-field icon="favorite"></kup-text-field>
+        <kup-text-fielda icon="favorite"></kup-text-fielda>
         <kup-text-field shaped icon="favorite"></kup-text-field>
+        <kup-text-fielda shaped icon="favorite"></kup-text-fielda>
         <kup-text-field is-clearable icon="favorite"></kup-text-field>
+        <kup-text-fielda is-clearable icon="favorite"></kup-text-fielda>
         <kup-text-field
             trailing-icon
             is-clearable
             icon="favorite"
         ></kup-text-field>
+        <kup-text-fielda
+            trailing-icon
+            is-clearable
+            icon="favorite"
+        ></kup-text-fielda>
         <kup-text-field trailing-icon icon="favorite"></kup-text-field>
+        <kup-text-fielda trailing-icon icon="favorite"></kup-text-fielda>
         <kup-text-field helper="I am a helper text"></kup-text-field>
+        <kup-text-fielda helper="I am a helper text"></kup-text-fielda>
         <kup-text-field
             helper-when-focused
             helper="I am a helper text"
         ></kup-text-field>
+        <kup-text-fielda
+            helper-when-focused
+            helper="I am a helper text"
+        ></kup-text-fielda>
         <kup-text-field
             helper-when-focused
             max-length="10"
             helper="I am a helper text"
         ></kup-text-field>
+        <kup-text-fielda
+            helper-when-focused
+            max-length="10"
+            helper="I am a helper text"
+        ></kup-text-fielda>
         <kup-text-field
             max-length="10"
             helper="I am a helper text"
         ></kup-text-field>
+        <kup-text-fielda
+            max-length="10"
+            helper="I am a helper text"
+        ></kup-text-fielda>
         <kup-text-field full-width text-area></kup-text-field>
+        <kup-text-fielda full-width text-area></kup-text-fielda>
         <kup-text-field max-length="10" full-width text-area></kup-text-field>
+        <kup-text-fielda max-length="10" full-width text-area></kup-text-fielda>
         <kup-text-field
             leading-label
             label="I am a label left"
         ></kup-text-field>
+        <kup-text-fielda
+            leading-label
+            label="I am a label left"
+        ></kup-text-fielda>
         <kup-text-field
             trailing-label
             label="I am a label right"
         ></kup-text-field>
+        <kup-text-fielda
+            trailing-label
+            label="I am a label right"
+        ></kup-text-fielda>
         <kup-text-field label="I am a label"></kup-text-field>
+        <kup-text-fielda label="I am a label"></kup-text-fielda>
         <kup-text-field outlined label="I am a label"></kup-text-field>
+        <kup-text-fielda outlined label="I am a label"></kup-text-fielda>
         <kup-text-field outlined shaped label="I am a label"></kup-text-field>
+        <kup-text-fielda outlined shaped label="I am a label"></kup-text-fielda>
         <kup-text-field text-area></kup-text-field>
+        <kup-text-fielda text-area></kup-text-fielda>
         <kup-text-field text-area label="I am a label"></kup-text-field>
+        <kup-text-fielda text-area label="I am a label"></kup-text-fielda>
         <kup-text-field full-width label="I am a label"></kup-text-field>
+        <kup-text-fielda full-width label="I am a label"></kup-text-fielda>
         <kup-text-field disabled label="I am a label"></kup-text-field>
+        <kup-text-fielda disabled label="I am a label"></kup-text-fielda>
         <kup-text-field
             disabled
             label="I am a label"
             initial-value="yooooo"
         ></kup-text-field>
+        <kup-text-fielda
+            disabled
+            label="I am a label"
+            initial-value="yooooo"
+        ></kup-text-fielda>
         <kup-text-field
             label="I am a label"
             initial-value="yooooo"
         ></kup-text-field>
+        <kup-text-fielda
+            label="I am a label"
+            initial-value="yooooo"
+        ></kup-text-fielda>
         <kup-text-field
             input-type="number"
             label="I'm a numeric text field"
             initial-value="22"
             step="0.01"
         ></kup-text-field>
-        <script>
-            // For the password field
-            const inPassword = document.querySelector(
-                'kup-text-field[input-type="password"]'
-            );
-            inPassword.addEventListener('ketchupTextInputFocused', (e) => {
-                console.log('Password has been FOCUSED', e);
-            });
-            inPassword.addEventListener('ketchupTextInputBlurred', (e) => {
-                console.log('#Password has been BLURRED', e);
-            });
-            inPassword.addEventListener('ketchupTextInputUpdated', (e) => {
-                console.log('Password has been UPDATED', e);
-            });
-        </script></body
-    >
+        <kup-text-fielda
+            input-type="number"
+            label="I'm a numeric text field"
+            initial-value="22"
+            step="0.01"
+        ></kup-text-fielda
+    ></body>
 </html>

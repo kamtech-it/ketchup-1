@@ -44,6 +44,7 @@ import { KupRatingClickEventPayload } from "./components/kup-rating/kup-rating-d
 import { KupSwitchEventPayload } from "./components/kup-switch/kup-switch-declarations";
 import { KupTabBarClickEventPayload, KupTabBarData, KupTabBarEventPayload } from "./components/kup-tab-bar/kup-tab-bar-declarations";
 import { KupTextFieldEventPayload } from "./components/kup-text-field/kup-text-field-declarations";
+import { KupTextFieldEventPayload as KupTextFieldEventPayload1 } from "./components/kup-text-fielda/kup-text-fielda-declarations";
 import { KupTimePickerEventPayload } from "./components/kup-time-picker/kup-time-picker-declarations";
 import { KupTooltipActionCommandClickEventPayload, KupTooltipDefaultEventPayload, KupTooltipLoadEventPayload, KupTooltipTreeDynamicMassExpansionEventPayload, KupTooltipTreeNodeButtonClickEventPayload, KupTooltipTreeNodeDblClickEventPayload, KupTooltipTreeNodeExpandEventPayload, KupTooltipTreeNodeSelectedEventPayload, TooltipCellOptions, TooltipData, TooltipDetailData, TooltipRelatedObject } from "./components/kup-tooltip/kup-tooltip-declarations";
 import { UploadProps } from "./components/kup-upload/kup-upload-declarations";
@@ -2233,6 +2234,141 @@ export namespace Components {
          */
         "trailingLabel": boolean;
     }
+    interface KupTextFielda {
+        /**
+          * Custom style of the component.
+          * @default ""
+          * @see https ://ketchup.smeup.com/ketchup-showcase/#/customization
+         */
+        "customStyle": string;
+        /**
+          * When set to true, the component is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * When the text field is part of the autocomplete component and the list is opened, enter key selects the item and doesn't submit.
+          * @default true
+         */
+        "emitSubmitEventOnEnter": boolean;
+        /**
+          * When set to true, the component will be rendered at full width.
+          * @default false
+         */
+        "fullWidth": boolean;
+        /**
+          * Used to retrieve component's props values.
+          * @param descriptions - When provided and true, the result will be the list of props with their description.
+          * @returns List of props as object, each key will be a prop.
+         */
+        "getProps": (descriptions?: boolean) => Promise<GenericObject>;
+        /**
+          * Returns the component's internal value.
+         */
+        "getValue": () => Promise<string>;
+        /**
+          * When set, its content will be shown as a help text below the field.
+          * @default null
+         */
+        "helper": string;
+        /**
+          * When set, the helper will be shown only when the field is focused.
+          * @default false
+         */
+        "helperWhenFocused": boolean;
+        /**
+          * When set, the text-field will show this icon.
+          * @default null
+         */
+        "icon": string;
+        /**
+          * Sets the initial value of the component
+          * @default ""
+         */
+        "initialValue": string;
+        /**
+          * The HTML type of the input element. It has no effect on text areas.
+          * @default "text"
+         */
+        "inputType": string;
+        /**
+          * Enables a clear trailing icon.
+          * @default false
+         */
+        "isClearable": boolean;
+        /**
+          * When set, its content will be shown as a label.
+          * @default null
+         */
+        "label": string;
+        /**
+          * When set to true, the label will be on the left of the component.
+          * @default false
+         */
+        "leadingLabel": boolean;
+        /**
+          * The HTML max attribute specifies the maximum value for the input element. Works with the following input types: number, range, date, datetime-local, month, time and week.
+          * @default null
+         */
+        "max": number;
+        /**
+          * When set, the helper will display a character counter.
+          * @default null
+         */
+        "maxLength": number;
+        /**
+          * The HTML min attribute specifies the minimum value for the input element. Works with the following input types: number, range, date, datetime-local, month, time and week.
+          * @default null
+         */
+        "min": number;
+        /**
+          * When set to true, the component will be rendered as an outlined field.
+          * @default false
+         */
+        "outlined": boolean;
+        /**
+          * Sets the component to read only state, making it not editable, but interactable. Used in combobox component when it behaves as a select.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
+          * This method is used to trigger a new render of the component.
+         */
+        "refresh": () => Promise<void>;
+        /**
+          * Focuses the input element.
+         */
+        "setFocus": () => Promise<void>;
+        /**
+          * Sets the props to the component.
+          * @param props - Object containing props that will be set to the component.
+         */
+        "setProps": (props: GenericObject) => Promise<void>;
+        /**
+          * Sets the internal value of the component.
+         */
+        "setValue": (value: string) => Promise<void>;
+        /**
+          * The HTML step of the input element. It has effect only with number input type.
+          * @default null
+         */
+        "step": number;
+        /**
+          * When set to true, the component will be rendered as a textarea.
+          * @default false
+         */
+        "textArea": boolean;
+        /**
+          * When set, the icon will be shown after the text.
+          * @default false
+         */
+        "trailingIcon": boolean;
+        /**
+          * When set to true, the label will be on the right of the component.
+          * @default false
+         */
+        "trailingLabel": boolean;
+    }
     interface KupTimePicker {
         /**
           * When set to true, the drop down menu will display a clock.
@@ -2749,6 +2885,12 @@ declare global {
         prototype: HTMLKupTextFieldElement;
         new (): HTMLKupTextFieldElement;
     };
+    interface HTMLKupTextFieldaElement extends Components.KupTextFielda, HTMLStencilElement {
+    }
+    var HTMLKupTextFieldaElement: {
+        prototype: HTMLKupTextFieldaElement;
+        new (): HTMLKupTextFieldaElement;
+    };
     interface HTMLKupTimePickerElement extends Components.KupTimePicker, HTMLStencilElement {
     }
     var HTMLKupTimePickerElement: {
@@ -2820,6 +2962,7 @@ declare global {
         "kup-switch": HTMLKupSwitchElement;
         "kup-tab-bar": HTMLKupTabBarElement;
         "kup-text-field": HTMLKupTextFieldElement;
+        "kup-text-fielda": HTMLKupTextFieldaElement;
         "kup-time-picker": HTMLKupTimePickerElement;
         "kup-tooltip": HTMLKupTooltipElement;
         "kup-tree": HTMLKupTreeElement;
@@ -4780,6 +4923,146 @@ declare namespace LocalJSX {
          */
         "trailingLabel"?: boolean;
     }
+    interface KupTextFielda {
+        /**
+          * Custom style of the component.
+          * @default ""
+          * @see https ://ketchup.smeup.com/ketchup-showcase/#/customization
+         */
+        "customStyle"?: string;
+        /**
+          * When set to true, the component is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * When the text field is part of the autocomplete component and the list is opened, enter key selects the item and doesn't submit.
+          * @default true
+         */
+        "emitSubmitEventOnEnter"?: boolean;
+        /**
+          * When set to true, the component will be rendered at full width.
+          * @default false
+         */
+        "fullWidth"?: boolean;
+        /**
+          * When set, its content will be shown as a help text below the field.
+          * @default null
+         */
+        "helper"?: string;
+        /**
+          * When set, the helper will be shown only when the field is focused.
+          * @default false
+         */
+        "helperWhenFocused"?: boolean;
+        /**
+          * When set, the text-field will show this icon.
+          * @default null
+         */
+        "icon"?: string;
+        /**
+          * Sets the initial value of the component
+          * @default ""
+         */
+        "initialValue"?: string;
+        /**
+          * The HTML type of the input element. It has no effect on text areas.
+          * @default "text"
+         */
+        "inputType"?: string;
+        /**
+          * Enables a clear trailing icon.
+          * @default false
+         */
+        "isClearable"?: boolean;
+        /**
+          * When set, its content will be shown as a label.
+          * @default null
+         */
+        "label"?: string;
+        /**
+          * When set to true, the label will be on the left of the component.
+          * @default false
+         */
+        "leadingLabel"?: boolean;
+        /**
+          * The HTML max attribute specifies the maximum value for the input element. Works with the following input types: number, range, date, datetime-local, month, time and week.
+          * @default null
+         */
+        "max"?: number;
+        /**
+          * When set, the helper will display a character counter.
+          * @default null
+         */
+        "maxLength"?: number;
+        /**
+          * The HTML min attribute specifies the minimum value for the input element. Works with the following input types: number, range, date, datetime-local, month, time and week.
+          * @default null
+         */
+        "min"?: number;
+        /**
+          * Triggered when the input element loses focus.
+         */
+        "onKup-textfield-blur"?: (event: CustomEvent<KupTextFieldEventPayload>) => void;
+        /**
+          * Triggered when the input element changes.
+         */
+        "onKup-textfield-change"?: (event: CustomEvent<KupTextFieldEventPayload>) => void;
+        /**
+          * Triggered when the text field's clear icon is clicked.
+         */
+        "onKup-textfield-cleariconclick"?: (event: CustomEvent<KupEventPayload>) => void;
+        /**
+          * Triggered when the input element is clicked.
+         */
+        "onKup-textfield-click"?: (event: CustomEvent<KupTextFieldEventPayload>) => void;
+        /**
+          * Triggered when the input element gets focused.
+         */
+        "onKup-textfield-focus"?: (event: CustomEvent<KupTextFieldEventPayload>) => void;
+        /**
+          * Triggered when the text field's icon is clicked.
+         */
+        "onKup-textfield-iconclick"?: (event: CustomEvent<KupTextFieldEventPayload>) => void;
+        /**
+          * Triggered when the input element receives an input.
+         */
+        "onKup-textfield-input"?: (event: CustomEvent<KupTextFieldEventPayload>) => void;
+        /**
+          * Triggered when the Enter key is pressed.
+         */
+        "onKup-textfield-submit"?: (event: CustomEvent<KupTextFieldEventPayload>) => void;
+        /**
+          * When set to true, the component will be rendered as an outlined field.
+          * @default false
+         */
+        "outlined"?: boolean;
+        /**
+          * Sets the component to read only state, making it not editable, but interactable. Used in combobox component when it behaves as a select.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
+          * The HTML step of the input element. It has effect only with number input type.
+          * @default null
+         */
+        "step"?: number;
+        /**
+          * When set to true, the component will be rendered as a textarea.
+          * @default false
+         */
+        "textArea"?: boolean;
+        /**
+          * When set, the icon will be shown after the text.
+          * @default false
+         */
+        "trailingIcon"?: boolean;
+        /**
+          * When set to true, the label will be on the right of the component.
+          * @default false
+         */
+        "trailingLabel"?: boolean;
+    }
     interface KupTimePicker {
         /**
           * When set to true, the drop down menu will display a clock.
@@ -5070,6 +5353,7 @@ declare namespace LocalJSX {
         "kup-switch": KupSwitch;
         "kup-tab-bar": KupTabBar;
         "kup-text-field": KupTextField;
+        "kup-text-fielda": KupTextFielda;
         "kup-time-picker": KupTimePicker;
         "kup-tooltip": KupTooltip;
         "kup-tree": KupTree;
@@ -5126,6 +5410,7 @@ declare module "@stencil/core" {
             "kup-switch": LocalJSX.KupSwitch & JSXBase.HTMLAttributes<HTMLKupSwitchElement>;
             "kup-tab-bar": LocalJSX.KupTabBar & JSXBase.HTMLAttributes<HTMLKupTabBarElement>;
             "kup-text-field": LocalJSX.KupTextField & JSXBase.HTMLAttributes<HTMLKupTextFieldElement>;
+            "kup-text-fielda": LocalJSX.KupTextFielda & JSXBase.HTMLAttributes<HTMLKupTextFieldaElement>;
             "kup-time-picker": LocalJSX.KupTimePicker & JSXBase.HTMLAttributes<HTMLKupTimePickerElement>;
             "kup-tooltip": LocalJSX.KupTooltip & JSXBase.HTMLAttributes<HTMLKupTooltipElement>;
             "kup-tree": LocalJSX.KupTree & JSXBase.HTMLAttributes<HTMLKupTreeElement>;
