@@ -114,6 +114,16 @@ function setContent(props: FTextFieldProps): HTMLDivElement {
                 </span>
             ) : (
                 <input
+                    onBlur={(e) => {
+                        (
+                            e.target as HTMLElement
+                        ).parentElement.classList.remove('text-field--focused');
+                    }}
+                    onFocus={(e) => {
+                        (e.target as HTMLElement).parentElement.classList.add(
+                            'text-field--focused'
+                        );
+                    }}
                     type={props.inputType ? props.inputType : 'text'}
                     step={props.step}
                     min={props.min}

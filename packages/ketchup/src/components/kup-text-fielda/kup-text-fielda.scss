@@ -2,25 +2,146 @@
 @import 'styles/kup-text-fielda-classes.scss';
 
 .f-text-fielda--wrapper {
+  .text-field {
+    border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    display: inline-flex;
+    align-items: baseline;
+    padding: 0 16px;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    will-change: opacity, transform, color;
+
+    .text-field__input {
+      caret-color: var(--kup-primary-color);
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-family: var(--kup-font-family);
+      font-size: 1em;
+      font-weight: 400;
+      letter-spacing: 0.009375em;
+      text-decoration: inherit;
+      text-transform: inherit;
+      height: 28px;
+      transition: opacity 150ms 0ms cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      min-width: 0;
+      border: none;
+      border-radius: 0;
+      background: none;
+      appearance: none;
+      padding: 0;
+      outline: none;
+    }
+
+    .text-field__icon {
+      align-self: center;
+      cursor: pointer;
+      background-color: var(--kup-icon-color);
+      cursor: pointer;
+      height: 24px;
+      outline: none;
+      padding: 0 7px;
+      width: 24px;
+
+      &.clear {
+        right: 0px;
+        left: initial;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .line-ripple {
+      &:before {
+        border-bottom-color: rgba(var(--kup-text-color-rgb), 0.325);
+        border-bottom-width: 1px;
+        z-index: 1;
+      }
+
+      &:after {
+        transform: scaleX(0);
+        border-bottom-color: var(--kup-primary-color);
+        border-bottom-width: 2px;
+        opacity: 0;
+        z-index: 2;
+        transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 180ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      &:before,
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom-style: solid;
+        content: '';
+      }
+    }
+
+    &.text-field--focused {
+      .line-ripple {
+        &:after {
+          opacity: 1;
+          transform: scaleX(1);
+        }
+      }
+    }
+
+    &.text-field.is-clearable {
+      .text-field__input {
+        padding-right: 48px;
+      }
+    }
+
+    &:not(.text-field--disabled) {
+      .text-field__input,
+      .floating-label,
+      .text-field__input::placeholder,
+      .text-field-character-counter,
+      + .text-field-helper-line .text-field-character-counter,
+      + .text-field-helper-line .text-field-helper-text {
+        color: var(--kup-text-color);
+      }
+    }
+
+    &:not(.text-field--outlined):not(.text-field--textarea) {
+      .text-field__input {
+        height: 100%;
+      }
+    }
+
+    &.text-field--filled {
+      background-color: var(--kup-field-background-color);
+      height: 40px;
+    }
+  }
 }
 
 /*
 #kup-component {
     .f-text-fielda--wrapper {
-      .mdc-form-field {
+      .form-field {
         & label {
           font-family: var(--kup-font-family);
           font-size: 1em;
           margin: auto;
         }
-        .mdc-text-field__input {
+        .text-field__input {
           box-sizing: border-box;
           padding: 6px 0px;
         }
       }
   
-      .mdc-text-field {
-        div.mdc-text-field-helper-text {
+      .text-field {
+        div.text-field-helper-text {
           font-family: var(--kup-font-family);
           font-size: 0.75em;
         }
@@ -43,24 +164,24 @@
           font-size: 1em;
         }
   
-        &.mdc-text-field--filled:not(.mdc-text-field--disabled)
-          .mdc-line-ripple:before,
-        &.mdc-text-field--fullwidth:not(.mdc-text-field--disabled)
-          .mdc-line-ripple:before {
+        &.text-field--filled:not(.text-field--disabled)
+          .line-ripple:before,
+        &.text-field--fullwidth:not(.text-field--disabled)
+          .line-ripple:before {
           border-bottom-color: rgba(var(--kup-text-color-rgb), 0.325);
           &:hover {
             border-bottom-color: rgba(var(--kup-text-color-rgb), 0.575);
           }
-          &.mdc-line-ripple--active {
+          &.line-ripple--active {
             border-bottom-color: var(--kup-primary-color);
           }
         }
   
-        &.mdc-text-field--with-leading-icon .mdc-floating-label {
+        &.text-field--with-leading-icon .floating-label {
           left: 36px;
         }
   
-        & .mdc-text-field__icon.clear {
+        & .text-field__icon.clear {
           right: 0px;
           left: initial;
           position: absolute;
@@ -68,58 +189,58 @@
           transform: translateY(-50%);
         }
   
-        &.mdc-text-field--with-trailing-icon input ~ .clear {
+        &.text-field--with-trailing-icon input ~ .clear {
           right: 26px;
         }
   
-        &.is-clearable .mdc-text-field__input {
+        &.is-clearable .text-field__input {
           padding-right: 48px;
         }
   
-        &.mdc-text-field--with-trailing-icon.is-clearable .mdc-text-field__input {
+        &.text-field--with-trailing-icon.is-clearable .text-field__input {
           padding-right: 72px;
         }
   
-        &.mdc-text-field--fullwidth.mdc-text-field--focused {
+        &.text-field--fullwidth.text-field--focused {
           color: var(--kup-primary-color);
         }
   
-        &.mdc-text-field--fullwidth {
+        &.text-field--fullwidth {
           width: 100%;
         }
   
-        &.mdc-text-field--outlined {
-          &.mdc-text-field--with-leading-icon
-            label:not(.mdc-floating-label--float-above) {
+        &.text-field--outlined {
+          &.text-field--with-leading-icon
+            label:not(.floating-label--float-above) {
             left: 20px;
           }
   
-          & .mdc-notched-outline__leading,
-          & .mdc-notched-outline__notch,
-          & .mdc-notched-outline__trailing {
+          & .notched-outline__leading,
+          & .notched-outline__notch,
+          & .notched-outline__trailing {
             border-color: rgba(var(--kup-text-color-rgb), 0.575);
             border-bottom-style: inset;
           }
   
-          &:hover .mdc-notched-outline__leading,
-          &:hover .mdc-notched-outline__notch,
-          &:hover .mdc-notched-outline__trailing,
-          &.mdc-text-field--focused .mdc-notched-outline__leading,
-          &.mdc-text-field--focused .mdc-notched-outline__notch,
-          &.mdc-text-field--focused .mdc-notched-outline__trailing {
+          &:hover .notched-outline__leading,
+          &:hover .notched-outline__notch,
+          &:hover .notched-outline__trailing,
+          &.text-field--focused .notched-outline__leading,
+          &.text-field--focused .notched-outline__notch,
+          &.text-field--focused .notched-outline__trailing {
             border-color: var(--kup-primary-color);
           }
   
-          &.mdc-text-field--disabled .mdc-notched-outline__leading,
-          &.mdc-text-field--disabled .mdc-notched-outline__notch,
-          &.mdc-text-field--disabled .mdc-notched-outline__trailing {
+          &.text-field--disabled .notched-outline__leading,
+          &.text-field--disabled .notched-outline__notch,
+          &.text-field--disabled .notched-outline__trailing {
             border-color: rgba(var(--kup-text-color-rgb), 0.325);
           }
   
-          &.mdc-text-field--disabled {
+          &.text-field--disabled {
             color: rgba(var(--kup-text-color-rgb), 0.5);
   
-            & .mdc-text-field__input {
+            & .text-field__input {
               color: rgba(var(--kup-text-color-rgb), 0.5);
             }
   
@@ -128,86 +249,86 @@
             }
           }
   
-          &.mdc-text-field--textarea .mdc-floating-label--float-above {
+          &.text-field--textarea .floating-label--float-above {
             transform: translateY(-160%) scale(0.75);
           }
         }
   
-        &:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) {
-          @include mdc-text-field-density(-4);
+        &:not(.text-field--outlined):not(.text-field--textarea) {
+          @include text-field-density(-4);
   
-          label.mdc-floating-label {
+          label.floating-label {
             display: block;
           }
         }
   
-        &.mdc-text-field--outlined:not(.mdc-text-field--textarea) {
-          @include mdc-text-field-outlined-density(-4);
+        &.text-field--outlined:not(.text-field--textarea) {
+          @include text-field-outlined-density(-4);
   
-          label.mdc-floating-label {
+          label.floating-label {
             display: block;
-            &.mdc-floating-label--float-above {
+            &.floating-label--float-above {
               overflow: visible;
             }
           }
   
           transition: border-color 0.25s;
   
-          &.mdc-text-field--with-leading-icon .mdc-floating-label--float-above {
+          &.text-field--with-leading-icon .floating-label--float-above {
             transform: translateY(-26px) scale(0.75) translateX(-42px);
           }
         }
   
-        &.mdc-text-field--filled {
-          &.mdc-text-field--with-leading-icon label,
-          &.mdc-text-field--with-leading-icon input {
+        &.text-field--filled {
+          &.text-field--with-leading-icon label,
+          &.text-field--with-leading-icon input {
             left: 34px;
           }
-          .mdc-floating-label--float-above {
+          .floating-label--float-above {
             transform: translateY(-111%) scale(0.75);
           }
-          &:not(.mdc-text-field--no-label) input {
+          &:not(.text-field--no-label) input {
             box-sizing: border-box;
             padding-top: 9px;
           }
-          &:not(.mdc-text-field--disabled) {
+          &:not(.text-field--disabled) {
             background-color: var(--kup-field-background-color);
           }
         }
   
-        & .mdc-notched-outline {
+        & .notched-outline {
           opacity: 1;
         }
   
-        &:not(.mdc-text-field--disabled) {
-          & .mdc-text-field__input,
-          & .mdc-floating-label,
-          & .mdc-text-field__input::placeholder,
-          & .mdc-text-field-character-counter,
-          & + .mdc-text-field-helper-line .mdc-text-field-character-counter,
-          & + .mdc-text-field-helper-line .mdc-text-field-helper-text {
+        &:not(.text-field--disabled) {
+          & .text-field__input,
+          & .floating-label,
+          & .text-field__input::placeholder,
+          & .text-field-character-counter,
+          & + .text-field-helper-line .text-field-character-counter,
+          & + .text-field-helper-line .text-field-helper-text {
             color: var(--kup-text-color);
           }
-          & .mdc-floating-label,
-          & .mdc-text-field__input::placeholder,
-          & .mdc-text-field-character-counter,
-          & + .mdc-text-field-helper-line .mdc-text-field-character-counter,
-          & + .mdc-text-field-helper-line .mdc-text-field-helper-text {
+          & .floating-label,
+          & .text-field__input::placeholder,
+          & .text-field-character-counter,
+          & + .text-field-helper-line .text-field-character-counter,
+          & + .text-field-helper-line .text-field-helper-text {
             opacity: 0.7;
           }
   
-          &.mdc-text-field--textarea .mdc-text-field-character-counter {
+          &.text-field--textarea .text-field-character-counter {
             position: absolute;
             bottom: 9px;
             right: 15px;
           }
         }
   
-        &.mdc-text-field--disabled:not(.mdc-text-field--outlined) {
+        &.text-field--disabled:not(.text-field--outlined) {
           color: var(--kup-disabled-color);
           background: var(--kup-disabled-background-color);
   
-          & .mdc-text-field__input {
+          & .text-field__input {
             color: var(--kup-disabled-color);
             background: var(--kup-disabled-background-color);
           }
@@ -218,14 +339,14 @@
           }
         }
   
-        &:not(.mdc-text-field--focused)
-          + .mdc-text-field-helper-line
-          .mdc-text-field-helper-text:not(.mdc-text-field-helper-text--persistent) {
+        &:not(.text-field--focused)
+          + .text-field-helper-line
+          .text-field-helper-text:not(.text-field-helper-text--persistent) {
           opacity: 0;
         }
   
-        &.mdc-text-field--focused:not(.mdc-text-field-disabled)
-          .mdc-floating-label--float-above {
+        &.text-field--focused:not(.text-field-disabled)
+          .floating-label--float-above {
           color: var(--kup-primary-color);
           opacity: 1;
         }
@@ -233,13 +354,13 @@
   
       &.#{$kup-class-full-height} {
         height: 100%;
-        .mdc-text-field {
+        .text-field {
           height: 100%;
           overflow-y: hidden;
-          &:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) {
+          &:not(.text-field--outlined):not(.text-field--textarea) {
             height: 100%;
           }
-          .mdc-text-field__input {
+          .text-field__input {
             height: 100%;
           }
         }
@@ -250,20 +371,20 @@
       }
   
       &.shaped {
-        .mdc-text-field.mdc-text-field--filled {
+        .text-field.text-field--filled {
           border-radius: 16px 16px 0 0;
         }
   
-        .mdc-text-field.mdc-text-field--outlined
-          .mdc-notched-outline
-          .mdc-notched-outline__leading {
+        .text-field.text-field--outlined
+          .notched-outline
+          .notched-outline__leading {
           border-radius: 28px 0 0 28px;
           width: 28px;
         }
   
-        .mdc-text-field.mdc-text-field--outlined
-          .mdc-notched-outline
-          .mdc-notched-outline__trailing {
+        .text-field.text-field--outlined
+          .notched-outline
+          .notched-outline__trailing {
           border-radius: 0 28px 28px 0;
           width: 28px;
         }

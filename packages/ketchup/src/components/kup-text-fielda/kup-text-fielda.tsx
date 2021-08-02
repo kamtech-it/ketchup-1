@@ -45,6 +45,11 @@ export class KupTextFielda {
     /*-------------------------------------------------*/
 
     /**
+     * True when the component is focused.
+     * @default false
+     */
+    @State() focused: boolean = false;
+    /**
      * The value of the component.
      * @default ""
      */
