@@ -71,6 +71,10 @@ components.data = [
         id: 'combobox.html',
     },
     {
+        value: 'Cookie consent',
+        id: 'cookie-consent.html',
+    },
+    {
         value: 'Dash list',
         id: 'dash-list.html',
     },

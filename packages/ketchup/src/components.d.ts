@@ -24,6 +24,7 @@ import { KupChipEventPayload, KupChipNode } from "./components/kup-chip/kup-chip
 import { FChipType } from "./f-components/f-chip/f-chip-declarations";
 import { KupColorPickerEventPayload } from "./components/kup-color-picker/kup-color-picker-declarations";
 import { KupComboboxEventPayload, KupComboboxIconClickEventPayload } from "./components/kup-combobox/kup-combobox-declarations";
+import { KupCookieConsentData } from "./components/kup-cookie-consent/kup-cookie-consent-declarations";
 import { KupDashboardEventPayload, KupDataDashboard } from "./components/kup-dashboard/kup-dashboard-declarations";
 import { GroupLabelDisplayMode, GroupObject, KupDatatableClickEventPayload, KupDatatableColumnMenuEventPayload, KupDatatableColumnMoveEventPayload, KupDatatableColumnRemoveEventPayload, KupDataTableDataset, KupDatatableLoadMoreClickEventPayload, KupDataTableRow, KupDatatableRowActionClickEventPayload, KupDatatableRowSelectedEventPayload, LoadMoreMode, PaginatorPos, SelectionMode, ShowGrid, SortObject, TotalsMap } from "./components/kup-data-table/kup-data-table-declarations";
 import { GenericFilter, KupGlobalFilterMode } from "./utils/filters/filters-declarations";
@@ -964,6 +965,34 @@ export namespace Components {
           * When true shows the drop-down icon, for open list.
          */
         "showDropDownIcon": boolean;
+    }
+    interface KupCookieConsent {
+        /**
+          * Custom style of the component.
+          * @default ""
+          * @see https://ketchup.smeup.com/ketchup-showcase/#/customization
+         */
+        "customStyle": string;
+        /**
+          * The data of the cell.
+          * @default false
+         */
+        "data": KupCookieConsentData;
+        /**
+          * Used to retrieve component's props values.
+          * @param descriptions - When provided and true, the result will be the list of props with their description.
+          * @returns List of props as object, each key will be a prop.
+         */
+        "getProps": (descriptions?: boolean) => Promise<GenericObject>;
+        /**
+          * This method is used to trigger a new render of the component.
+         */
+        "refresh": () => Promise<void>;
+        /**
+          * Sets the props to the component.
+          * @param props - Object containing props that will be set to the component.
+         */
+        "setProps": (props: GenericObject) => Promise<void>;
     }
     interface KupDash {
         /**
@@ -3275,6 +3304,12 @@ declare global {
         prototype: HTMLKupComboboxElement;
         new (): HTMLKupComboboxElement;
     };
+    interface HTMLKupCookieConsentElement extends Components.KupCookieConsent, HTMLStencilElement {
+    }
+    var HTMLKupCookieConsentElement: {
+        prototype: HTMLKupCookieConsentElement;
+        new (): HTMLKupCookieConsentElement;
+    };
     interface HTMLKupDashElement extends Components.KupDash, HTMLStencilElement {
     }
     var HTMLKupDashElement: {
@@ -3488,6 +3523,7 @@ declare global {
         "kup-chip": HTMLKupChipElement;
         "kup-color-picker": HTMLKupColorPickerElement;
         "kup-combobox": HTMLKupComboboxElement;
+        "kup-cookie-consent": HTMLKupCookieConsentElement;
         "kup-dash": HTMLKupDashElement;
         "kup-dash-list": HTMLKupDashListElement;
         "kup-dashboard": HTMLKupDashboardElement;
@@ -4276,6 +4312,19 @@ declare namespace LocalJSX {
           * When true shows the drop-down icon, for open list.
          */
         "showDropDownIcon"?: boolean;
+    }
+    interface KupCookieConsent {
+        /**
+          * Custom style of the component.
+          * @default ""
+          * @see https://ketchup.smeup.com/ketchup-showcase/#/customization
+         */
+        "customStyle"?: string;
+        /**
+          * The data of the cell.
+          * @default false
+         */
+        "data"?: KupCookieConsentData;
     }
     interface KupDash {
         /**
@@ -5979,6 +6028,7 @@ declare namespace LocalJSX {
         "kup-chip": KupChip;
         "kup-color-picker": KupColorPicker;
         "kup-combobox": KupCombobox;
+        "kup-cookie-consent": KupCookieConsent;
         "kup-dash": KupDash;
         "kup-dash-list": KupDashList;
         "kup-dashboard": KupDashboard;
@@ -6032,6 +6082,7 @@ declare module "@stencil/core" {
             "kup-chip": LocalJSX.KupChip & JSXBase.HTMLAttributes<HTMLKupChipElement>;
             "kup-color-picker": LocalJSX.KupColorPicker & JSXBase.HTMLAttributes<HTMLKupColorPickerElement>;
             "kup-combobox": LocalJSX.KupCombobox & JSXBase.HTMLAttributes<HTMLKupComboboxElement>;
+            "kup-cookie-consent": LocalJSX.KupCookieConsent & JSXBase.HTMLAttributes<HTMLKupCookieConsentElement>;
             "kup-dash": LocalJSX.KupDash & JSXBase.HTMLAttributes<HTMLKupDashElement>;
             "kup-dash-list": LocalJSX.KupDashList & JSXBase.HTMLAttributes<HTMLKupDashListElement>;
             "kup-dashboard": LocalJSX.KupDashboard & JSXBase.HTMLAttributes<HTMLKupDashboardElement>;

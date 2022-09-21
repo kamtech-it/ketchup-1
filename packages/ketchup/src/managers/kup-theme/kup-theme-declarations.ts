@@ -13,6 +13,7 @@ export const fButtonUsers = [
     KupTagNames.BOX,
     KupTagNames.CALENDAR,
     KupTagNames.CARD,
+    KupTagNames.COOKIECONSENT,
     KupTagNames.DASHBOARD,
     KupTagNames.DATA_TABLE,
     KupTagNames.DROPDOWN_BUTTON,
